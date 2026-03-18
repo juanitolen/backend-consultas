@@ -11,33 +11,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fiap.ec.backend_consultas.model.Especialidade;
-import com.fiap.ec.backend_consultas.service.EspecialidadeService;
+import com.fiap.ec.backend_consultas.model.Paciente;
+import com.fiap.ec.backend_consultas.service.PacienteService;
 @RestController
-@RequestMapping("/especialidades")
+@RequestMapping("/pacientes")
 @CrossOrigin
-public class EspecialidadeController {
-    private final EspecialidadeService service;
-    public EspecialidadeController(EspecialidadeService service) {
+public class PacienteController {
+    private final PacienteService service;
+    public PacienteController(PacienteService service) {
         this.service = service;
     }
     @PostMapping
-    public Especialidade criar(@RequestBody Especialidade especialidade) {
-        return service.salvar(especialidade);
+    public Paciente criar(@RequestBody Paciente paciente) {
+        return service.salvar(paciente);
     }
     @GetMapping
-    public List<Especialidade> listar() {
+    public List<Paciente> listar() {
         return service.listar();
     }
-
     @GetMapping("/{id}")
-    public Especialidade buscarPorId(@PathVariable Long id) {
+    public Paciente buscarPorId(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
-    public Especialidade atualizar(@PathVariable Long id, @RequestBody Especialidade especialidade) {
-        return service.atualizar(id, especialidade);
+    public Paciente atualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
+        return service.atualizar(id, paciente);
     }
 
     @DeleteMapping("/{id}")
