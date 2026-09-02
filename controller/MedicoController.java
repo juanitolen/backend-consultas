@@ -17,6 +17,11 @@ public class MedicoController {
         this.service = service;
     }
 
+    @PostMapping
+    public Medico criar(@RequestBody Medico medico) {
+        return service.salvar(medico);
+    }
+
     @GetMapping
     public List<Medico> listar() {
         return service.listar();
@@ -27,13 +32,11 @@ public class MedicoController {
         return service.buscarPorId(id);
     }
 
-    @PostMapping
-    public Medico salvar(@RequestBody Medico medico) {
-        return service.salvar(medico);
-    }
-
     @PutMapping("/{id}")
-    public Medico atualizar(@PathVariable Long id, @RequestBody Medico medico) {
+    public Medico atualizar(
+            @PathVariable Long id,
+            @RequestBody Medico medico
+    ) {
         return service.atualizar(id, medico);
     }
 

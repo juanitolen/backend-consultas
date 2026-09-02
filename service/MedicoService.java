@@ -28,17 +28,18 @@ public class MedicoService {
                 .orElseThrow(() -> new RuntimeException("Médico não encontrado"));
     }
 
-    public Medico atualizar(Long id, Medico medicoAtualizado) {
-        Medico medicoExistente = buscarPorId(id);
-        medicoExistente.setNome(medicoAtualizado.getNome());
-        medicoExistente.setCrm(medicoAtualizado.getCrm());
-        medicoExistente.setEspecialidade(medicoAtualizado.getEspecialidade());
-        medicoExistente.setAtivo(medicoAtualizado.getAtivo());
-        return repository.save(medicoExistente);
+    public Medico atualizar(Long id, Medico medico) {
+        Medico existente = buscarPorId(id);
+
+        existente.setNome(medico.getNome());
+        existente.setCrm(medico.getCrm());
+        existente.setEspecialidade(medico.getEspecialidade());
+        existente.setAtivo(medico.getAtivo());
+
+        return repository.save(existente);
     }
 
     public void deletar(Long id) {
-        Medico medico = buscarPorId(id);
-        repository.delete(medico);
+        repository.deleteById(id);
     }
 }
